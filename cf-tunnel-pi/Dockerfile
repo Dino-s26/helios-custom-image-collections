@@ -15,3 +15,5 @@ RUN apt-get update && apt-get install -y wget dpkg && \
     rm cloudflared-linux-armhf.deb
 
 ENTRYPOINT [ "cloudflared" ]
+
+## Tag update
