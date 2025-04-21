@@ -2,9 +2,8 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ] ## trigger on main banch push
     tags:
-     - 'v*' ## trigger on version tagging, current naming convention for the docker image version release
+    - 'v*' ## trigger on version tagging, current naming convention for the docker image version release
 
 jobs:
 
@@ -13,8 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        image_name: ['cf-tunnel-pi'] ## Application Name / Folder Name
-        platform: ['linux/arm/v7'] ## for now will build on armhf architecture
+        image_name: [ 'cf-tunnel-pi' ] ## Application Name / Folder Name
+        platform: [ 'linux/arm/v7' ] ## for now will build on armhf architecture
 
     steps:
     - name: Checkout New Image
@@ -25,7 +24,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    
+
     - name: Setup Docker Buildx
       uses: docker/setup-buildx-action@v3
       with:
@@ -34,7 +33,7 @@ jobs:
     - name: Build and Push Docker Image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      run: | 
+      run: |
         TAG=$(echo "${GITHUB_REF#refs/tags/}" | sed 's|refs/heads/||')
         IMAGE=${DOCKER_USERNAME}/${{ matrix.image_name}}
         PLATFORM=${{ matrix.platform }}
