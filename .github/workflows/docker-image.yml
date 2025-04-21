@@ -32,9 +32,11 @@ jobs:
         buildkitd-flags: --debug
 
     - name: Build and Push Docker Image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run: | 
         TAG=$(echo "${GITHUB_REF#refs/tags/}" | sed 's|refs/heads/||')
-        IMAGE=${ secret.DOCKER_USERNAME }/${{ matrix.image_name}}
+        IMAGE=${DOCKER_USERNAME}/${{ matrix.image_name}}
         PLATFORM=${{ matrix.platform }}
 
         docker buildx build \
