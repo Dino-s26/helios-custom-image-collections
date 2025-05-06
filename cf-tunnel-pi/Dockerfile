@@ -2,7 +2,7 @@ ARG ARCH=arm/v7
 FROM ubuntu:22.04 AS base
 
 # Set noninteractive mode to avoid tzdata and other prompts
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Set default command
 SHELL ["/bin/bash", "-c"]
