@@ -44,4 +44,4 @@ jobs:
           -t $IMAGE:latest \
           -f ./${{ matrix.image_name }}/Dockerfile \
           ./${{ matrix.image_name }} \
-          --push
+          --push --no-cache
