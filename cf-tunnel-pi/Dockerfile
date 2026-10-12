@@ -1,5 +1,5 @@
 ARG ARCH=arm/v7
-FROM ubuntu:22.04 AS base
+FROM ubuntu:24.04 AS base
 
 # Set noninteractive mode to avoid tzdata and other prompts
 ARG DEBIAN_FRONTEND=noninteractive
